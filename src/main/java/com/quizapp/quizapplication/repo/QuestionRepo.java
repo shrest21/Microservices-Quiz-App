@@ -1,7 +1,20 @@
 package com.quizapp.quizapplication.repo;
 
-import com.quizapp.quizapplication.model.Question;
+import java.util.List;
+
+import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface QuestionRepo extends MongoRepository<Question, String> {
+import com.quizapp.quizapplication.model.Question;
+
+public interface QuestionRepo extends MongoRepository<Question,String>{
+
+    List<Question> findByCategory(String category);
+
+    @Aggregation(pipeline = {
+            "{ $match: { category: ?0 } }",
+            "{ $sample: { size: ?1 } }"
+    })
+    List<Question> findRandomQuestionByCategory(String category, int numQ);
+
 }

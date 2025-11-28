@@ -1,31 +1,21 @@
 package com.quizapp.quizapplication.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "questions")
-public class Question {
-
+public class QuestionWrapper {
     @Id
     private String id;
-
     private String questionTitle;
     private String option1;
     private String option2;
     private String option3;
     private String option4;
-    private String difficultyLevel;
-    private String rightAnswer;
-    private String category;
-
-
     public String getId() {
         return id;
     }
     public void setId(String id) {
         this.id = id;
     }
-
     public String getQuestionTitle() {
         return questionTitle;
     }
@@ -56,23 +46,16 @@ public class Question {
     public void setOption4(String option4) {
         this.option4 = option4;
     }
-    public String getDifficultyLevel() {
-        return difficultyLevel;
+    public QuestionWrapper(String id, String questionTitle, String option1, String option2, String option3,
+                           String option4) {
+        super();
+        this.id = id;
+        this.questionTitle = questionTitle;
+        this.option1 = option1;
+        this.option2 = option2;
+        this.option3 = option3;
+        this.option4 = option4;
     }
-    public void setDifficultyLevel(String difficultyLevel) {
-        this.difficultyLevel = difficultyLevel;
-    }
-    public String getRightAnswer() {
-        return rightAnswer;
-    }
-    public void setRightAnswer(String rightAnswer) {
-        this.rightAnswer = rightAnswer;
-    }
-    public String getCategory() {
-        return category;
-    }
-    public void setCategory(String category) {
-        this.category = category;
-    }
+
 
 }
